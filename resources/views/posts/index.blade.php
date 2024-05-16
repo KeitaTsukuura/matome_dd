@@ -9,6 +9,13 @@
     
     <body>
         <h1>まとめスパッタリー!</h1>
+        <div>
+            <form action="/posts/search" method="GET">
+                @csrf
+                <input type="text" name="keyword" placeholder="検索キーワードを入力">
+                <input type="submit" value="検索">
+            </form>
+        </div>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class'post'>
