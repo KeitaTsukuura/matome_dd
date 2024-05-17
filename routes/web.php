@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,15 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/search', [PostController::class, 'searchIndex'])->name('posts.search');
-Route::post('/posts', [PostController::class, 'store']);
-Route::get('/posts/create', [PostController::class, 'create']);
-Route::get('/posts/{post}', [PostController::class, 'show']);
-Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
-Route::put('/posts/{post}', [PostController::class, 'update']);
+Route::controller(PostController::class)->group(function(){
+    Route::get('/', 'index')->name('posts.index');
+    Route::get('/posts/search', 'searchIndex')->name('posts.search');
+    Route::post('/posts', 'store');
+    Route::get('/posts/create', 'create');
+    Route::get('/posts/{post}', 'show');
+    Route::get('/posts/{post}/edit', 'edit');
+    Route::put('/posts/{post}', 'update');
+    Route::delete('/posts/{post}', 'delete')->name('delete');
+});
+
+Route::get('/categories/{category}', [CategoryController::class, 'index']);
