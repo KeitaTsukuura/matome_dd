@@ -22,6 +22,15 @@
             <a href="/posts/{{ $post->id }}/edit">編集</a>
         </div>
         
+        <form action="/comments" method="POST">
+            @csrf
+            <div class="comment">
+                <h2>コメント</h2>
+                <textarea name="comment[body]" placeholder="コメントを書いてね" value={{ old('comment.body') }}></textarea>
+                <p class="comment_error" style="color:red">{{ $errors->first('comment.body') }}</p>
+            </div>
+            <input type="submit" value="コメントする"/>
+        </form>
         <div class="footer">
             <a href="/">戻る</a>
         </div>
