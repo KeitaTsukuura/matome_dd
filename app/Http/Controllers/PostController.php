@@ -33,9 +33,10 @@ class PostController extends Controller
     return view('posts.index')->with(['posts' => $posts]);
     }
 
-    public function show(Post $post)
+    public function show($id)
     {
-        return view('posts.show')->with(['post' => $post]);
+        $post = Post::with('comments')->findOrFail($id);
+        return view('posts.show', ['post' => $post]);
     }
     public function create(Category $category)
     {

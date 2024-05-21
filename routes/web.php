@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::controller(PostController::class)->group(function(){
 });
 
 Route::get('/categories/{category}', [CategoryController::class, 'index']);
+
+Route::post('/comments', [CommentController::class, 'store']);

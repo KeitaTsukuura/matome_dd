@@ -22,15 +22,27 @@
             <a href="/posts/{{ $post->id }}/edit">編集</a>
         </div>
         
+        <div class="comments">
+            <h2>コメント一覧</h2>
+            @foreach ($post->comments as $comment)
+                <div class="comment">
+                    <p>{{ $comment->body }}</p>
+                    <p>投稿日時: {{ $comment->created_at }}</p>
+                </div>
+            @endforeach
+        </div>
+        
         <form action="/comments" method="POST">
             @csrf
             <div class="comment">
-                <h2>コメント</h2>
-                <textarea name="comment[body]" placeholder="コメントを書いてね" value={{ old('comment.body') }}></textarea>
+                <h2>コメントを追加</h2>
+                <textarea name="comment[body]" placeholder="コメントを書いてね">{{ old('comment.body') }}</textarea>
+                <input type="hidden" name="post_id" value="{{ $post->id }}">
                 <p class="comment_error" style="color:red">{{ $errors->first('comment.body') }}</p>
             </div>
             <input type="submit" value="コメントする"/>
         </form>
+
         <div class="footer">
             <a href="/">戻る</a>
         </div>
