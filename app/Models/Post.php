@@ -20,6 +20,10 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);    
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     public function getByLimit(int $limit_count = 100)
     {
         return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
