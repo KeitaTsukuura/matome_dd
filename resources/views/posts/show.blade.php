@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '_', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>まとめスパッタリー!</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    
-    <body>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <title>まとめスパッタリー!</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+</head>
+
+<body>
+    <x-app-layout>
+        <x-slot name="header">
+            show
+        </x-slot>
+
         <h1 class="title">
             {{ $post->title }}
         </h1>
@@ -32,19 +37,26 @@
             @endforeach
         </div>
         
+        @auth
         <form action="/comments" method="POST">
             @csrf
             <div class="comment">
                 <h2>コメントを追加</h2>
                 <textarea name="comment[body]" placeholder="コメントを書いてね">{{ old('comment.body') }}</textarea>
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
-                <p class="comment_error" style="color:red">{{ $errors->first('comment.body') }}</p>
+                @if ($errors->has('comment.body'))
+                    <p class="comment_error" style="color:red">{{ $errors->first('comment.body') }}</p>
+                @endif
             </div>
             <input type="submit" value="コメントする"/>
         </form>
+        @else
+        <p>コメントを追加するには<a href="{{ route('login') }}">ログイン</a>してください。</p>
+        @endauth
 
         <div class="footer">
             <a href="/">戻る</a>
         </div>
-    </body>
+    </x-app-layout>
+</body>
 </html>

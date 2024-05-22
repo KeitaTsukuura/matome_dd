@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\CommentRequest; 
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
         $comment = new Comment;
         $comment->body = $request->input('comment.body');
