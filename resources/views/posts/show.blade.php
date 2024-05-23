@@ -20,6 +20,7 @@
             <div class="content_post">
                 <h3>本文</h3>
                 <p>{{ $post->body }}</p>
+                <p>投稿日時: {{ $post->created_at }}</p>
             </div>
         </div>
         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
@@ -34,9 +35,26 @@
                     <p>{{ $comment->body }}</p>
                     <p>投稿日時: {{ $comment->created_at }}</p>
                 </div>
+                @auth
+                <form action="/comments/{{ $comment->id }}" id="form_{{ $comment->id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" onclick="deleteComment({{ $comment->id }})">削除</button>
+                </form>
+                @else
+                <p>コメントを削除するには<a href="{{ route('login') }}">ログイン</a>してください。</p>
+                @endauth
             @endforeach
         </div>
-        
+        <script>
+            function deleteComment(id) {
+                'use strict';
+                    
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
         @auth
         <form action="/comments" method="POST">
             @csrf

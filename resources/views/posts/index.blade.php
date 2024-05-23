@@ -28,12 +28,15 @@
                         </h2>
                         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                         <p class='body'>{{ $post->body }}</p>
-                        
+                        @auth
                         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="button" onclick="deletePost({{ $post ->id }})">削除</button>
                         </form>
+                        @else
+                        <p>投稿を削除するには<a href="{{ route('login') }}">ログイン</a>してください。</p>
+                        @endauth
                     </div>
                 @endforeach
                 </div>
@@ -41,8 +44,11 @@
                     {{ $posts->links() }}
                 </div>
             </div>
+            @auth
             <a href='/posts/create'>投稿を作成</a>
-            
+            @else
+            <p>投稿を作成するには<a href="{{ route('login') }}">ログイン</a>してください。</p>
+            @endauth
             <script>
                 function deletePost(id) {
                     'use strict'

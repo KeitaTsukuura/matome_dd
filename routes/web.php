@@ -35,6 +35,7 @@ Route::controller(PostController::class)->group(function(){
 Route::get('/categories/{category}', [CategoryController::class, 'index']);
 
 Route::post('/comments', [CommentController::class, 'store'])->middleware('auth');
+Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
