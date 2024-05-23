@@ -19,4 +19,10 @@ class CommentController extends Controller
         
         return redirect()->back()->with('message', 'コメントが保存されました');
     }
+    
+    public function delete(Comment $comment)
+    {
+        $comment->delete();
+        return redirect()->back()->with('message', 'コメントが削除されました');
+    }
 }
