@@ -28,6 +28,7 @@
                         </h2>
                         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                         <p class='body'>{{ $post->body }}</p>
+                        <p class='user'>投稿者: {{ $post->user->name }}</p>
                         @auth
                         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                             @csrf

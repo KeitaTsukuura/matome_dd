@@ -10,10 +10,12 @@ class CommentController extends Controller
 {
     public function store(CommentRequest $request)
     {
+        $userId = auth()->id();
         $comment = new Comment;
         $comment->body = $request->input('comment.body');
         $comment->post_id = $request->input('post_id');
-
+        $comment->user_id = $userId;
+        
         $comment->save();
     
         
