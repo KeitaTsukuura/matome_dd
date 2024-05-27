@@ -14,6 +14,9 @@
         <body>
             <h1>まとめスパッタリー!</h1>
             <div>
+                <div class='gears'>
+                    <a href="/gears">みんなのギアはこちら</a>
+                </div>
                 <form action="/posts/search" method="GET">
                     @csrf
                     <input type="text" name="keyword" placeholder="検索キーワードを入力">
