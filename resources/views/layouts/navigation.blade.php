@@ -18,6 +18,11 @@
                     <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                         {{ __('Index') }}
                     </x-nav-link>
+                    @guest <!-- ログインしていない場合のみ新規登録のリンクを表示 -->
+                <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        {{ __('Register') }}
+                </x-nav-link>
+    @endguest
                 </div>
             </div>
 

@@ -20,6 +20,7 @@
             <div class="content_post">
                 <h3>本文</h3>
                 <p>{{ $post->body }}</p>
+                <p class='user'>投稿者: {{ $post->user->name }}</p>
                 <p>投稿日時: {{ $post->created_at }}</p>
             </div>
         </div>
@@ -33,6 +34,7 @@
             @foreach ($post->comments as $comment)
                 <div class="comment">
                     <p>{{ $comment->body }}</p>
+                    <p class='user'>投稿者: {{ $comment->user->name }}</p>
                     <p>投稿日時: {{ $comment->created_at }}</p>
                 </div>
                 @auth
