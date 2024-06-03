@@ -15,7 +15,7 @@
             <h1>まとめスパッタリー!</h1>
             <div>
                 <div class='gears'>
-                    <a href="/gears">みんなのギアはこちら</a>
+                    <a href="/gears/index">みんなのギアはこちら</a>
                 </div>
                 <form action="/posts/search" method="GET">
                     @csrf
@@ -49,7 +49,7 @@
                 </div>
             </div>
             @auth
-            <a href='/posts/create'>投稿を作成</a>
+            <a href="{{ route('posts.create') }}">投稿を作成</a>
             @else
             <p>投稿を作成するには<a href="{{ route('login') }}">ログイン</a>してください。</p>
             @endauth
