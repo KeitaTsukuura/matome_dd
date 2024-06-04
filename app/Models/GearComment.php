@@ -6,27 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Gear extends Model
+class GearComment extends Model
 {
     use HasFactory;
     use SoftDeletes;
     
     protected $fillable = [
-        'title',
         'body',
-        'image_url',
+        'gear_id',
     ];
     
-    public function getPaginateBylimit(int $limit_count = 3)
+    public function gear()
     {
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this->belongsTo(Gear::class);
     }
-    
-    public function gear_comments()
-    {
-        return $this->hasMany(GearComment::class);
-    }
-    
     public function user()
     {
         return $this->belongsTo(User::class);
