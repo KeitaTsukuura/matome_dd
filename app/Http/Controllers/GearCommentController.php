@@ -22,7 +22,7 @@ class GearCommentController extends Controller
         return redirect()->back()->with('message', 'コメントが保存されました');
     }
     
-    public function delete(Comment $comment)
+    public function delete(GearComment $comment)
     {
         $comment->delete();
         return redirect()->back()->with('message', 'コメントが削除されました');
