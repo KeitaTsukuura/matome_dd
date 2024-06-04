@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GearController;
+use App\Http\Controllers\GearCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ Route::get('/categories/{category}', [CategoryController::class, 'index']);
 
 Route::post('/comments', [CommentController::class, 'store'])->middleware('auth');
 Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->middleware('auth');
+
+Route::post('/gear_comments', [GearCommentController::class, 'store'])->middleware('auth');
+Route::delete('/gear_comments/{comment}', [GearCommentController::class, 'delete'])->middleware('auth');
 
 Route::controller(GearController::class)->group(function(){
     Route::get('/gears/index', 'index')->name('gears.index');
