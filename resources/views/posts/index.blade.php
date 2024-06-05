@@ -5,6 +5,7 @@
         <title>まとめスパッタリー!</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        
     </head>
     
     <x-app-layout>
@@ -32,15 +33,15 @@
                         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                         <p class='body'>{{ $post->body }}</p>
                         <p class='user'>投稿者: {{ $post->user->name }}</p>
-                        @auth
+                        @can('delete-post', $post)
                         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="button" onclick="deletePost({{ $post ->id }})">削除</button>
                         </form>
                         @else
-                        <p>投稿を削除するには<a href="{{ route('login') }}">ログイン</a>してください。</p>
-                        @endauth
+                        <p>投稿を削除するには投稿したアカウントで<a href="{{ route('login') }}">ログイン</a>してください。</p>
+                        @endcan
                     </div>
                 @endforeach
                 </div>
