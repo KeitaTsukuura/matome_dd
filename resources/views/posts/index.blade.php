@@ -5,16 +5,17 @@
         <title>まとめスパッタリー!</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        @vite(['resources/sass/app.scss','resources/js/app.js'])
         
     </head>
     
     <x-app-layout>
-        <x-slot name="header">
-            index
+        <x-slot name="header" class='text-blue-600'>
+            まとめスパッタリー!
         </x-slot>
         <body>
-            <h1>まとめスパッタリー!</h1>
-            <div>
+           
+            <div class='flex justify-center items-center flex-col '>
                 <div class='gears'>
                     <a href="/gears/index">みんなのギアはこちら</a>
                 </div>
@@ -24,9 +25,9 @@
                     <input type="submit" value="検索">
                 </form>
             </div>
-            <div class='posts'>
+            <div class='flex posts'>
                 @foreach ($posts as $post)
-                    <div class'post'>
+                    <div class='m-5 post'>
                         <h2 class='title'>
                             <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                         </h2>
@@ -37,10 +38,10 @@
                         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="deletePost({{ $post ->id }})">削除</button>
+                            <button type="button" class="btn btn-primary" onclick="deletePost({{ $post ->id }})">削除</button>
                         </form>
                         @else
-                        <p>投稿を削除するには投稿したアカウントで<a href="{{ route('login') }}">ログイン</a>してください。</p>
+                        <p class='text-red-500'>投稿を削除するには投稿したアカウントで<a href="{{ route('login') }}">ログイン</a>してください。</p>
                         @endcan
                     </div>
                 @endforeach
