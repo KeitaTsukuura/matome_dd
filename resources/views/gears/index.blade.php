@@ -5,18 +5,18 @@
         <title>まとめスパッタリー!</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        @vite(['resources/sass/app.scss','resources/js/app.js'])
     </head>
     
     <x-app-layout>
         <x-slot name="header">
-            index
+            みんなのギア
         </x-slot>
         <body>
-            <h1>まとめスパッタリー!</h1>
-            <div class='gears'>
+            <div class='d-flex flex-row gears'>
                 @foreach ($gears as $gear)
                     <div class'gear'>
-                        <h2 class='title'>
+                        <h2 class='fs-2 text-primary title'>
                             <a href="/gears/{{ $gear->id }}">{{ $gear->title }}</a>
                         </h2>
                         <p class='body'>{{ $gear->body }}</p>
@@ -28,7 +28,7 @@
                         <form action="/gears/{{ $gear->id }}" id="form_{{ $gear->id }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="deleteGear({{ $gear->id }})">削除</button>
+                            <button type="button" class="btn btn-primary"　onclick="deleteGear({{ $gear->id }})">削除</button>
                         </form>
                         @else
                         <p>投稿を削除するには<a href="{{ route('login') }}">ログイン</a>してください。</p>
