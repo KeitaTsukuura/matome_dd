@@ -16,6 +16,13 @@
         <x-slot name="header">
             <h1>みんなのギア</h1>
         </x-slot>
+        <div class='text-center my-4'>
+            <form action="/gears/search" method="GET" class="form-inline justify-content-center">
+                @csrf
+                <input type="text" name="keyword" placeholder="検索キーワードを入力" class="form-control mr-2">
+                <button type="submit" class="btn btn-primary">検索</button>
+            </form>
+        </div>
         <div class="container mt-5">
             <div class="row gears">
                 @foreach ($gears as $gear)

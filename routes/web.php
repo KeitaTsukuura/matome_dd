@@ -44,6 +44,7 @@ Route::delete('/gear_comments/{comment}', [GearCommentController::class, 'delete
 
 Route::controller(GearController::class)->group(function(){
     Route::get('/gears/index', 'index')->name('gears.index');
+    Route::get('/gears/search', 'searchIndex')->name('gears.search');
     Route::get('/gears/create', 'create')->name('gears.create')->middleware('auth');
     Route::post('/gears/store', 'store')->name('gears.store')->middleware('auth');
     Route::get('/gears/{gear}', 'show')->name('gears.show');

@@ -13,6 +13,25 @@ class GearController extends Controller
     {
         return view('gears.index')->with(['gears' => $gear->getPaginateBylimit()]);
     }
+    public function searchIndex(Request $request, Gear $gear)
+    {
+    // キーワードをリクエストから取得
+    $keyword = $request->input('keyword');
+
+    // Postモデルのクエリビルダーを取得
+    $query = $gear->newQuery();
+
+    // キーワードが空でない場合は検索条件を追加
+    if (!empty($keyword)) {
+        $query->where('title', 'LIKE', "%{$keyword}%");
+    }
+
+    // 検索結果を取得
+    $gears = $query->orderBy('updated_at', 'DESC')->paginate(3);
+
+    // ビューに検索結果を渡す
+    return view('gears.index')->with(['gears' => $gears]);
+    }
     public function create()
     {
         return view('gears.create');   
