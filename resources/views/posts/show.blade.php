@@ -20,9 +20,11 @@
             <div class="content_post text-center mb-4">
                 <h3>本文</h3>
                 <p class="border border-secondary p-3 fs-2">{{ $post->body }}</p>
+                <div class="flex gap-3 justify-end">
                 <p class='user'>投稿者: {{ $post->user->name }}</p>
                 <p>投稿日時: {{ $post->created_at }}</p>
                 <a href="/categories/{{ $post->category->id }}" class="badge badge-secondary">{{ $post->category->name }}</a>
+                </div>
             </div>
             @can('delete-post', $post)
             <div class="text-center mb-4">
@@ -36,7 +38,9 @@
                 @foreach ($post->comments as $comment)
                     <div class="comment border p-3 mb-3">
                         <p>{{ $comment->body }}</p>
+                        <div>
                         <p class='user'>投稿者: {{ $comment->user->name }}</p>
+                        </div>
                         <p>投稿日時: {{ $comment->created_at }}</p>
                         @auth
                         <form action="/comments/{{ $comment->id }}" id="form_{{ $comment->id }}" method="post" class="d-inline">

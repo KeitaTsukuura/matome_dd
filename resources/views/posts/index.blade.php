@@ -33,7 +33,7 @@
                         <div class='card'>
                             <div class='card-body'>
                                 <h2 class='card-title'>
-                                    <a href="/posts/{{ $post->id }}" class="text-primary">{{ $post->title }}</a>
+                                    <a href="/posts/{{ $post->id }}" class="fs-3 text-primary">{{ $post->title }}</a>
                                 </h2>
                                 <a href="/categories/{{ $post->category->id }}" class="badge badge-secondary">{{ $post->category->name }}</a>
                                 <p class='card-text mt-2'>{{ $post->body }}</p>
