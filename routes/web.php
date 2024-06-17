@@ -36,6 +36,7 @@ Route::controller(PostController::class)->group(function(){
 
 Route::get('/categories/{category}', [CategoryController::class, 'index']);
 
+
 Route::post('/comments', [CommentController::class, 'store'])->middleware('auth');
 Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->middleware('auth');
 

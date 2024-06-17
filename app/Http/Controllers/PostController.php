@@ -27,7 +27,7 @@ class PostController extends Controller
     }
 
     // 検索結果を取得
-    $posts = $query->orderBy('updated_at', 'DESC')->paginate(5);
+    $posts = $query->orderBy('updated_at', 'DESC')->paginate(6);
 
     // ビューに検索結果を渡す
     return view('posts.index')->with(['posts' => $posts]);

@@ -14,6 +14,7 @@ class Gear extends Model
     protected $fillable = [
         'title',
         'body',
+        'category_id',
         'image_url',
     ];
     
