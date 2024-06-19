@@ -6,23 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class GearComment extends Model
+class Reply extends Model
 {
     use HasFactory;
     use SoftDeletes;
     
     protected $fillable = [
         'body',
-        'gear_id',
+        'comment_id',
     ];
     
-    public function gear()
+    public function comment()
     {
-        return $this->belongsTo(Gear::class);
-    }
-    public function gear_replies()
-    {
-        return $this->hasMany(GearReply::class);
+        return $this->belongsTo(Comment::class);
     }
     public function user()
     {
