@@ -47,8 +47,6 @@
                                         <button type="button" class="btn btn-danger" onclick="deletePost({{ $post->id }})">削除</button>
                                     </form>
                                 </div>
-                                @else
-                                <p class='text-danger'>投稿を削除、編集するには投稿したアカウントで<a href="{{ route('login') }}" class='text-primary'>ログイン</a>してください。</p>
                                 @endcan
                             </div>
                         </div>

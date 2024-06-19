@@ -37,18 +37,17 @@
                                     <img src="{{ $gear->image_url }}" class="img-fluid" alt="画像が読み込めません" />
                                 </div>
                                 <p class="user mt-2">投稿者: {{ $gear->user->name }}</p>
-                                @auth
+                                @can('update', $gear)
                                 <div class="d-flex justify-content-between mt-2">
                                     <a href="/gears/{{ $gear->id }}/edit" class="btn btn-primary">編集</a>
-                                    <form action="/gears/{{ $gear->id }}" id="form_{{ $gear->id }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger" onclick="deleteGear({{ $gear->id }})">削除</button>
-                                    </form>
+                                <form action="/gears/{{ $gear->id }}" id="form_{{ $gear->id }}" method="post" class="mt-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger" onclick="deleteGear({{ $gear->id }})">削除</button>
+                                </form>
                                 </div>
-                                @else
-                                <p class="text-danger mt-2">投稿を削除するには<a href="{{ route('login') }}" class="text-primary">ログイン</a>してください。</p>
-                                @endauth
+                                
+                                @endcan
                             </div>
                         </div>
                     </div>
